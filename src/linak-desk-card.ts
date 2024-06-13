@@ -68,11 +68,11 @@ export class LinakDeskCard extends LitElement {
   }
 
   get height(): number {
-    return this.relativeHeight + this.config.min_height;
+    return parseInt(this.hass.states[this.config.height_sensor]?.state, 10) || 0;
   }
 
   get relativeHeight(): number {
-    return parseInt(this.hass.states[this.config.height_sensor]?.state, 10) || 0;
+    return this.height + this.config.min_height;
   }
 
   get connected(): boolean {
